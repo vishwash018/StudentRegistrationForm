@@ -5,11 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Student Registration Form</title>
 
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* Box model & base */
     *, *::before, *::after { box-sizing: border-box; }
 
     body {
@@ -20,10 +18,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 40px 20px; /* allows space on small screens */
+      padding: 40px 20px;
     }
 
-    /* Card / container */
     .form-container {
       width: 100%;
       max-width: 520px;
@@ -33,7 +30,6 @@
       padding: 30px 34px;
     }
 
-    /* Heading (centered) */
     .form-container h1 {
       margin: 0 0 22px 0;
       text-align: center;
@@ -42,8 +38,8 @@
       letter-spacing: 0.2px;
     }
 
-    /* Form groups */
     .form-group { margin-bottom: 14px; }
+
     label {
       display: block;
       margin-bottom: 6px;
@@ -78,7 +74,6 @@
       outline: none;
     }
 
-    /* Gender inline radios */
     .gender-group {
       display: flex;
       gap: 12px;
@@ -86,6 +81,7 @@
       margin-top: 6px;
       flex-wrap: wrap;
     }
+
     .gender-group label {
       display: inline-flex;
       align-items: center;
@@ -94,12 +90,12 @@
       color: #333;
       cursor: pointer;
     }
+
     input[type="radio"] {
       transform: scale(1.05);
       accent-color: #4a90e2;
     }
 
-    /* Button */
     .btn {
       width: 100%;
       padding: 12px;
@@ -112,9 +108,9 @@
       color: #fff;
       transition: background-color .2s, transform .06s;
     }
+
     .btn:hover { background-color: #357abd; }
 
-    /* Helper small text */
     .error {
       color: #b72b2b;
       font-size: 13px;
@@ -122,7 +118,6 @@
       display: none;
     }
 
-    /* Mobile tweaks */
     @media (max-width: 420px) {
       .form-container { padding: 22px; }
       .form-container h1 { font-size: 20px; }
@@ -196,7 +191,6 @@
   </div>
 
   <script>
-    // Simple password match check & basic UX
     const form = document.getElementById('regForm');
     const pwd = document.getElementById('password');
     const cpwd = document.getElementById('confirm-password');
@@ -220,9 +214,7 @@
     cpwd.addEventListener('input', checkPasswordMatch);
 
     form.addEventListener('submit', function(e) {
-      // built-in validity
       if (!form.checkValidity()) {
-        // Let browser show native validation messages
         return;
       }
 
@@ -232,8 +224,6 @@
         return;
       }
 
-      // At this point, form is valid — normally it would submit.
-      // For demo / local testing, prevent actual submission and show an alert:
       e.preventDefault();
       alert('Form submitted successfully (demo). Replace this with real submit handling.');
     });
