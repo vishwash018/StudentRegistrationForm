@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Registration Form</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* Box model & base */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px; /* allows space on small screens */
+    }
+
+    /* Card / container */
+    .form-container {
+      width: 100%;
+      max-width: 520px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.10);
+      padding: 30px 34px;
+    }
+
+    /* Heading (centered) */
+    .form-container h1 {
+      margin: 0 0 22px 0;
+      text-align: center;
+      color: #222;
+      font-size: 26px;
+      letter-spacing: 0.2px;
+    }
+
+    /* Form groups */
+    .form-group { margin-bottom: 14px; }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #444;
+      font-size: 14px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #d7dbe0;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: border-color .25s, box-shadow .25s;
+      background: #fff;
+      color: #222;
+      font-family: inherit;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #4a90e2;
+      box-shadow: 0 0 6px rgba(74,144,226,0.22);
+      outline: none;
+    }
+
+    /* Gender inline radios */
+    .gender-group {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
+    .gender-group label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+      color: #333;
+      cursor: pointer;
+    }
+    input[type="radio"] {
+      transform: scale(1.05);
+      accent-color: #4a90e2;
+    }
+
+    /* Button */
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #4a90e2;
+      color: #fff;
+      transition: background-color .2s, transform .06s;
+    }
+    .btn:hover { background-color: #357abd; }
+
+    /* Helper small text */
+    .error {
+      color: #b72b2b;
+      font-size: 13px;
+      margin-top: 6px;
+      display: none;
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 420px) {
+      .form-container { padding: 22px; }
+      .form-container h1 { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Student Registration Form</h1>
+
+    <form id="regForm" novalidate>
+      <div class="form-group">
+        <label for="student-name">Student Name</label>
+        <input type="text" id="student-name" name="student-name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="contact-number">Contact Number</label>
+        <input type="tel" id="contact-number" name="contact-number" pattern="[0-9]{10}" placeholder="Enter 10-digit number" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <textarea id="address" name="address" rows="3" placeholder="Enter your full address..." required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Gender</label>
+        <div class="gender-group" role="radiogroup" aria-labelledby="genderLabel">
+          <label><input type="radio" name="gender" value="male" required> Male</label>
+          <label><input type="radio" name="gender" value="female"> Female</label>
+          <label><input type="radio" name="gender" value="other"> Other</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="course">Select Course</label>
+        <select id="course" name="course" required>
+          <option value="">-- Choose a course --</option>
+          <option value="cse">B.Tech CSE</option>
+          <option value="aiml">B.Tech AI & ML</option>
+          <option value="ece">B.Tech ECE</option>
+          <option value="mech">B.Tech Mechanical</option>
+          <option value="civil">B.Tech Civil</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" minlength="6" required>
+      </div>
+
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" minlength="6" required>
+        <div id="pwError" class="error">Passwords do not match</div>
+      </div>
+
+      <button class="btn" type="submit">Register</button>
+    </form>
+  </div>
+
+  <script>
+    // Simple password match check & basic UX
+    const form = document.getElementById('regForm');
+    const pwd = document.getElementById('password');
+    const cpwd = document.getElementById('confirm-password');
+    const pwError = document.getElementById('pwError');
+
+    function checkPasswordMatch() {
+      if (pwd.value === '' && cpwd.value === '') {
+        pwError.style.display = 'none';
+        return true;
+      }
+      if (pwd.value !== cpwd.value) {
+        pwError.style.display = 'block';
+        return false;
+      } else {
+        pwError.style.display = 'none';
+        return true;
+      }
+    }
+
+    pwd.addEventListener('input', checkPasswordMatch);
+    cpwd.addEventListener('input', checkPasswordMatch);
+
+    form.addEventListener('submit', function(e) {
+      // built-in validity
+      if (!form.checkValidity()) {
+        // Let browser show native validation messages
+        return;
+      }
+
+      if (!checkPasswordMatch()) {
+        e.preventDefault();
+        cpwd.focus();
+        return;
+      }
+
+      // At this point, form is valid — normally it would submit.
+      // For demo / local testing, prevent actual submission and show an alert:
+      e.preventDefault();
+      alert('Form submitted successfully (demo). Replace this with real submit handling.');
+    });
+  </script>
+</body>
+</html>
